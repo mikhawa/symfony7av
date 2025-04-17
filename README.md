@@ -21,7 +21,7 @@ Ou séparément :
 
 ## Dates
 
-- installation : *2025-04-17* `Version 7.2.5`
+- installation | *2025-04-17* | `Version 7.2.5`
 - 
 
 ## Installation
@@ -30,4 +30,19 @@ Ou séparément :
 symfony new --webapp Symfony7
 
 cd Symfony7
+```
+
+## Configuration
+
+### Configuration de l'environnement
+
+```bash
+cp .env .env.local
+```
+
+
+### Configuration de la base de données
+
+```bash
+php bin/console doctrine:database:create
 ```
