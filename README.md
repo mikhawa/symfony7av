@@ -95,3 +95,5 @@ Il devrait afficher :
 ```bash
 Created database `symfony7` for connection named default
 ```
+
+La base de données est créée sur votre serveur de base de données `MariaDB`.
