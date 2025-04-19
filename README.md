@@ -12,7 +12,8 @@
   - [Arrêt du serveur](#arrêt-du-serveur)
 - [Configuration](#configuration) 
   - [Configuration de l'environnement](#configuration-de-lenvironnement)
-  - [Configuration de la base de données](#configuration-de-la-base-de-données)
+    - [Configuration de la base de données](#configuration-de-la-base-de-données)
+    - [Configuration d'une clef secrète](#configuration-dune-clef-secrète)
 
 
 ## Sources
@@ -162,6 +163,16 @@ symfony server:stop
 cp .env .env.local
 ```
 
+Le fichier `.env.local` est utilisé pour stocker les variables d'environnement spécifiques à votre environnement de développement local. Il est généralement ignoré par le contrôle de version (par exemple, Git) pour éviter de partager des informations sensibles.
+
+---
+
+[Retour au menu](#menu)
+
+---
+
+#### Configuration de la base de données
+
 Dans le fichier `.env.local`, modifiez les lignes suivantes :
 
 ```dotenv
@@ -180,14 +191,6 @@ DATABASE_URL="mysql://root:@127.0.0.1:3307/symfony7?serverVersion=11.5.2-MariaDB
 # ...
 ```
 
----
-
-[Retour au menu](#menu)
-
----
-
-
-### Configuration de la base de données
 
 Vérifiez que le serveur de base de données est en cours d'exécution (par exemple `WAMP` ouvert sous Windows).
 
@@ -208,3 +211,37 @@ La base de données est créée sur votre serveur de base de données `MariaDB`.
 [Retour au menu](#menu)
 
 ---
+
+### Configuration d'une clef secrète
+
+Une clef secrète est utilisée pour signer les cookies et les sessions, elle permet de sécuriser les données sensibles dans votre application Symfony.
+
+Elle est également utilisée pour le chiffrement des données, comme les mots de passe ou les tokens d'authentification.
+
+Elle est générée automatiquement lors de la création du projet Symfony, mais il est recommandé de la changer pour des raisons de sécurité.
+
+
+Elle se trouve dans le fichier `.env.dev` :
+
+```dotenv
+# ...
+APP_SECRET=ThisTokenIsNotSoSecretChangeIt
+# ...
+```
+
+### Pour voir les fichiers de configuration
+
+```bash
+php bin/console debug:dotenv
+```
+
+Il faudra en mettre une nouvelle dans le fichier `.env.local`, par exemple :
+
+```dotenv
+# ...
+###> symfony/framework-bundle ###
+APP_ENV=dev
+APP_SECRET=
+###< symfony/framework-bundle ###
+# ...
+```
