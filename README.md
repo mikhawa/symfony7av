@@ -21,6 +21,12 @@
 - [symfony-2023-05-10](https://github.com/mikhawa/symfony-2023-05-10)
 - [Symfony-6.4-LTS](https://github.com/mikhawa/Symfony-6.4-LTS)
 
+---
+
+[Retour au menu](#menu)
+
+---
+
 ## Requis à l'installation
 
 Dans un environnement de développement sous Windows 11, vous devez avoir installé les outils suivants :
@@ -30,6 +36,12 @@ Dans un environnement de développement sous Windows 11, vous devez avoir instal
 - **Composer** `2.8.8` or higher
 - **Symfony CLI** `5.11` or higher
 - **MariaDB** `11.5.2` or higher
+
+---
+
+[Retour au menu](#menu)
+
+---
 
 ## Liens
 
@@ -44,10 +56,22 @@ Ou séparément :
 - [PHP](https://www.php.net/)
 - [MariaDB](https://mariadb.org/)
 
+---
+
+[Retour au menu](#menu)
+
+---
+
 ## Dates de progression
 
 - installation | *2025-04-17* | `Version 7.2.5`
 - Mise à jour | *2025-04-19* | `fichier README.md` et `composer.json`
+
+---
+
+[Retour au menu](#menu)
+
+---
 
 ## Installation
 
@@ -62,6 +86,12 @@ composer -V
 ```bash
 symfony -v
 ```
+
+---
+
+[Retour au menu](#menu)
+
+---
 
 ## Création du projet
 
@@ -83,6 +113,12 @@ symfony new --webapp Symfony7
 cd Symfony7
 ```
 
+---
+
+[Retour au menu](#menu)
+
+---
+
 ### Lancement du serveur
 
 ```bash
@@ -97,12 +133,25 @@ Si vous avez un problème de certificat SSL, vous pouvez l'installer avec la com
 ```bash
 symfony server:ca:install
 ```
+
+---
+
+[Retour au menu](#menu)
+
+---
+
 ### Arrêt du serveur
 Pour arrêter le serveur, vous pouvez utiliser la commande suivante :
 
 ```bash
 symfony server:stop
 ```
+
+---
+
+[Retour au menu](#menu)
+
+---
 
 ## Configuration
 
@@ -131,6 +180,13 @@ DATABASE_URL="mysql://root:@127.0.0.1:3307/symfony7?serverVersion=11.5.2-MariaDB
 # ...
 ```
 
+---
+
+[Retour au menu](#menu)
+
+---
+
+
 ### Configuration de la base de données
 
 Vérifiez que le serveur de base de données est en cours d'exécution (par exemple `WAMP` ouvert sous Windows).
@@ -146,3 +202,9 @@ Created database `symfony7` for connection named default
 ```
 
 La base de données est créée sur votre serveur de base de données `MariaDB`.
+
+---
+
+[Retour au menu](#menu)
+
+---
