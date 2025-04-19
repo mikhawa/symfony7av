@@ -114,6 +114,8 @@ symfony new --webapp Symfony7
 cd Symfony7
 ```
 
+[Documentation installation de Symfony](https://symfony.com/doc/current/setup.html)
+
 ---
 
 [Retour au menu](#menu)
@@ -134,6 +136,8 @@ Si vous avez un problème de certificat SSL, vous pouvez l'installer avec la com
 ```bash
 symfony server:ca:install
 ```
+
+[documentation sur les serveurs de Symfony](https://symfony.com/doc/current/setup/symfony_server.html)
 
 ---
 
@@ -225,7 +229,7 @@ Elle se trouve dans le fichier `.env.dev` :
 
 ```dotenv
 # ...
-APP_SECRET=ThisTokenIsNotSoSecretChangeIt
+APP_SECRET=5d1ed3d8ade04970b4a994b573fe6ce6
 # ...
 ```
 
@@ -241,7 +245,8 @@ Il faudra en mettre une nouvelle dans le fichier `.env.local`, par exemple :
 # ...
 ###> symfony/framework-bundle ###
 APP_ENV=dev
-APP_SECRET=
+APP_SECRET=UneClefSecrète
 ###< symfony/framework-bundle ###
 # ...
 ```
+
