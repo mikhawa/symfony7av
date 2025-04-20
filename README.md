@@ -250,3 +250,22 @@ APP_SECRET=UneClefSecrète
 # ...
 ```
 
+### PHP CS Fixer
+Pour formater le code, vous pouvez utiliser `PHP CS Fixer` :
+
+```bash
+composer require cs-fixer-shim
+```
+
+mettre en gitignore ces fichiers :
+
+```gitignore
+###> php-cs-fixer/shim ###
+/.php-cs-fixer.php
+/.php-cs-fixer.cache
+###< php-cs-fixer/shim ###
+```
+
+```bash
+
+https://symfonycasts.com/screencast/symfony/flex-recipes#play
