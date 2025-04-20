@@ -251,6 +251,10 @@ APP_SECRET=UneClefSecrète
 ```
 
 ### PHP CS Fixer
+Symfony utilise `PHP CS Fixer` pour formater le code PHP. Il est recommandé de l'utiliser pour maintenir un code propre et cohérent.
+Il est également utilisé pour vérifier la qualité du code et détecter les erreurs potentielles.
+
+
 Pour formater le code, vous pouvez utiliser `PHP CS Fixer` :
 
 ```bash
