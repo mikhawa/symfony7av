@@ -266,6 +266,29 @@ mettre en gitignore ces fichiers :
 ###< php-cs-fixer/shim ###
 ```
 
+Dans le fichier `.php-cs-fixer.dist.php` on va mettre les règles de formatage :
+
+```php
+<?php
+$finder = (new PhpCsFixer\Finder())
+    ->in(__DIR__)
+    ->exclude('var')
+;
+return (new PhpCsFixer\Config())
+    ->setRules([
+        '@Symfony' => true,
+    ])
+    ->setFinder($finder)
+;
+```
+Pour voir les commandes disponibles :
 ```bash
+./vendor/bin/php-cs-fixer
+```
+
+Pour formater le code :
+```bash
+./vendor/bin/php-cs-fixer fix
+```
 
 https://symfonycasts.com/screencast/symfony/flex-recipes#play
