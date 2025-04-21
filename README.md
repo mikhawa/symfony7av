@@ -14,6 +14,8 @@
   - [Configuration de l'environnement](#configuration-de-lenvironnement)
     - [Configuration de la base de données](#configuration-de-la-base-de-données)
     - [Configuration d'une clef secrète](#configuration-dune-clef-secrète)
+      - [Pour voir les fichiers de configuration](#pour-voir-les-fichiers-de-configuration)
+    - [PHP CS Fixer](#php-cs-fixer)
 
 
 ## Sources
@@ -233,7 +235,13 @@ APP_SECRET=5d1ed3d8ade04970b4a994b573fe6ce6
 # ...
 ```
 
-### Pour voir les fichiers de configuration
+---
+
+[Retour au menu](#menu)
+
+---
+
+#### Pour voir les fichiers de configuration
 
 ```bash
 php bin/console debug:dotenv
@@ -249,6 +257,13 @@ APP_SECRET=UneClefSecrète
 ###< symfony/framework-bundle ###
 # ...
 ```
+
+Il est recommandé de ne pas partager cette clef secrète dans le contrôle de version (par exemple, Git) pour éviter que des personnes non autorisées puissent accéder à vos données sensibles.
+---
+
+[Retour au menu](#menu)
+
+---
 
 ### PHP CS Fixer
 Symfony utilise `PHP CS Fixer` pour formater le code PHP. Il est recommandé de l'utiliser pour maintenir un code propre et cohérent.
@@ -295,4 +310,13 @@ Pour formater le code :
 ./vendor/bin/php-cs-fixer fix
 ```
 
+
 https://symfonycasts.com/screencast/symfony/flex-recipes#play
+
+https://symfony.com/doc/current/contributing/code/conventions.html
+
+----
+
+[Retour au menu](#menu)
+
+---
