@@ -15,7 +15,8 @@ final class MainController extends AbstractController
             'controller_name' => 'MainController',
         ]);
     }
-    #[Route('/api/starships')]
+
+    #[Route('/api/starships', name: 'app_starships')]
     public function getCollection(): Response
     {
         $starships = [
@@ -38,6 +39,7 @@ final class MainController extends AbstractController
                 'status' => 'under construction',
             ],
         ];
+
         return $this->json($starships);
     }
 }
