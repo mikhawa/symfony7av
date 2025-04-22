@@ -16,6 +16,9 @@
     - [Configuration d'une clef secrète](#configuration-dune-clef-secrète)
       - [Pour voir les fichiers de configuration](#pour-voir-les-fichiers-de-configuration)
     - [PHP CS Fixer](#php-cs-fixer)
+    - [Utilisation de Stimulus UX](#utilisation-de-stimulus-ux)
+        - [Ajax avec Symfony UX](#ajax-avec-symfony-ux)
+        - 
 
 
 ## Sources
@@ -466,3 +469,64 @@ Dans cet exemple :
 * La méthode `toggle()` est déclenchée par le clic sur le bouton et utilise `classList.toggle('hidden')` pour ajouter ou retirer la classe CSS `hidden`, changeant ainsi la visibilité de l'élément ciblé.
 
 Ces exemples démontrent la simplicité et l'efficacité de Stimulus pour ajouter de l'interactivité frontend ciblée dans vos applications Symfony, en capitalisant sur votre structure HTML existante. Les paquets Symfony UX s'appuient sur ce concept pour fournir des intégrations plus complexes (comme des composants de formulaire enrichis, des graphiques, etc.) en utilisant des contrôleurs Stimulus prêts à l'emploi.
+
+## Ajax avec Symfony UX
+
+Symfony UX ne remplace pas les mécanismes fondamentaux d'Ajax, mais il fournit des outils et des conventions qui rendent son implémentation plus agréable et organisée côté frontend, en particulier en utilisant Stimulus et d'autres composants comme Turbo.
+
+Voici les principales façons d'aborder l'Ajax avec Symfony UX :
+
+1.  **Avec un Contrôleur Stimulus et l'API Fetch (ou XMLHttpRequest) :**
+    C'est la méthode la plus flexible si vous avez besoin d'un comportement Ajax très spécifique. Vous écrivez un contrôleur Stimulus qui, en réponse à une action (un clic, une soumission de formulaire, etc.), exécute une requête Ajax vers une URL de votre application Symfony en utilisant l'API `Workspace` intégrée au navigateur (ou `XMLHttpRequest` pour les anciens navigateurs, bien que `Workspace` soit préférée aujourd'hui).
+
+    Dans la méthode de votre contrôleur déclenchée par l'action, vous faites quelque chose comme ceci :
+
+    ```javascript
+    import { Controller } from '@hotwired/stimulus';
+
+    export default class extends Controller {
+        static values = { apiUrl: String }; // Pour passer l'URL depuis Twig
+
+        async fetchData() {
+            try {
+                const response = await fetch(this.apiUrlValue);
+                if (!response.ok) {
+                    throw new Error(`Erreur HTTP ! Statut : ${response.status}`);
+                }
+                const data = await response.json(); // Ou response.text(), response.html(), etc.
+                console.log('Données reçues :', data);
+                // Mettre à jour le DOM avec les données reçues, par exemple en utilisant des targets Stimulus
+                // this.outputTarget.textContent = data.message;
+            } catch (error) {
+                console.error('Erreur lors de la récupération des données :', error);
+            }
+        }
+    }
+    ```
+
+    Et dans votre template Twig :
+
+    ```html+jinja
+    <div {{ stimulus_controller('my-ajax-controller', { apiUrl: path('ma_route_ajax') }) }}>
+        <button data-action="click->my-ajax-controller#fetchData">Charger des données</button>
+        <div data-my-ajax-controller-target="output"></div>
+    </div>
+    ```
+
+    Votre contrôleur Symfony côté serveur (`MaRouteAjaxController`) renverrait simplement une réponse (par exemple, une `JsonResponse` ou une `Response` contenant du HTML).
+
+2.  **Avec Turbo (faisant partie de Hotwired et intégré via Symfony UX) :**
+    Turbo est conçu pour accélérer les applications web basées sur le serveur en utilisant judicieusement l'Ajax. Il intercepte automatiquement les clics sur les liens et les soumissions de formulaires et effectue des requêtes Ajax en arrière-plan.
+
+  * **Turbo Drive :** Il intercepte les liens et les formulaires (GET) et navigue en Ajax, remplaçant le `<body>` entier par le nouveau contenu reçu. Cela donne une sensation d'application monopage sans avoir à écrire de JavaScript pour la navigation.
+  * **Turbo Frames :** Vous pouvez définir des "frames" dans votre HTML (`<turbo-frame id="mon-frame">`). Un lien ou un formulaire à l'intérieur d'un frame, ou pointant vers un frame, effectuera une requête Ajax et ne mettra à jour *que* le contenu de ce frame spécifique. C'est idéal pour des mises à jour partielles de page sans JavaScript personnalisé.
+  * **Turbo Streams :** Permet au serveur d'envoyer des actions de mise à jour du DOM (ajouter, remplacer, supprimer des éléments) via WebSocket ou une réponse Ajax.
+
+    L'avantage de Turbo est qu'il gère une grande partie de la complexité de l'Ajax pour des cas d'usage courants (navigation, chargement de contenu partiel) avec peu ou pas de JavaScript supplémentaire.
+
+3.  **Avec d'autres composants Symfony UX basés sur l'Ajax :**
+    Plusieurs paquets Symfony UX utilisent l'Ajax en interne pour fournir des fonctionnalités prêtes à l'emploi :
+  * `symfony/ux-autocomplete` : Fournit un champ de saisie semi-automatique qui charge les suggestions via Ajax.
+  * `symfony/ux-live-component` : Permet de créer des composants frontend interactifs dont l'état est géré côté serveur, avec les interactions utilisateur déclenchant des requêtes Ajax automatiques pour mettre à jour le composant.
+
+En résumé, Symfony UX, notamment via l'intégration de Stimulus et Turbo, est parfaitement adapté à la réalisation de requêtes Ajax, offrant à la fois la flexibilité d'écrire votre propre logique avec Stimulus et `Workspace`, et des solutions plus abstraites et conventionnelles comme Turbo et les Live Components pour des cas d'usage fréquents. Cela vous permet de construire des interfaces utilisateur dynamiques tout en gardant une architecture principalement côté serveur.
