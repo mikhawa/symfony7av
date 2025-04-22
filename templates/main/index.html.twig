@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MainController!{% endblock %}
+{% block title %}{{ parent() }} | MainController de test{% endblock %}
 
 {% block body %}
 <style>
@@ -9,12 +9,15 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/micha/MesDocuments/SITES/2025/symfony7av/src/Controller/MainController.php</code></li>
-        <li>Your template at <code>C:/Users/micha/MesDocuments/SITES/2025/symfony7av/templates/main/index.html.twig</code></li>
-    </ul>
+    <h1>Tests dans  src/Controller/{{ controller_name }}! ✅</h1>
+    <p>Le controller est bien chargé et le test est bien lancé.</p>
+    <nav>
+        <ul>
+            <li><a href="{{ path('app_main') }}">Page d'accueil</a></li>
+            <li><a href="{{ path('app_starships') }}">Json</a></li>
+        </ul>
+    <h2>Exemple de test d'un controller</h2>
+    <p>Ci-dessous un javascript venant de stimulus</p>
+    <p data-controller="hello"></p>
 </div>
 {% endblock %}
