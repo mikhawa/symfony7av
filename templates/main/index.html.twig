@@ -13,11 +13,23 @@
     <p>Le controller est bien chargé et le test est bien lancé.</p>
     <nav>
         <ul>
-            <li><a href="{{ path('app_main') }}">Page d'accueil</a></li>
-            <li><a href="{{ path('app_starships') }}">Json</a></li>
+            <li><a href="{{ path('app_main') }}">Accueil MainController</a></li>
+            <li><a href="{{ path('app_starships') }}">Json MainController</a></li>
         </ul>
     <h2>Exemple de test d'un controller</h2>
     <p>Ci-dessous un javascript venant de stimulus</p>
-    <p data-controller="hello"></p>
+        <div {{ stimulus_controller('hello') }}>
+        </div>
+        <p>Un compteur venant de assets/controllers/counter_controller.js</p>
+        <div {{ stimulus_controller('counter', { initialCount: 10 }) }}>
+            <button data-action="click->counter#increment">Cliquez-moi !</button>
+            <p>Nombre de clics : <span data-counter-target="count"></span></p>
+        </div>
+        <div {{ stimulus_controller('toggle') }}>
+            <button data-action="click->toggle#toggle">Afficher/Masquer</button>
+            <div data-toggle-target="toggleableElement">
+                Ce contenu peut être affiché ou masqué.
+            </div>
+        </div>
 </div>
 {% endblock %}
